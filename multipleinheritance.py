@@ -1,0 +1,27 @@
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    def __init__(self, name):
+        self.name = name
+        print(f"Animal {self.name} created")
+
+    @abstractmethod
+    def move(self):
+        pass
+
+class Walker(Animal):
+        def move(self):
+            print(f"{self.name} walks on land")
+
+class Swimmer(Animal):
+        def move(self):
+            print(f"{self.name} swims in water")
+
+class Frog(Walker, Swimmer):
+        def __init__(self, name):
+            Walker.__init__(self, name)
+            Swimmer.__init__(self, name)
+
+frog = Frog("Freddy")
+print(Frog.__mro__)
+frog.move()
